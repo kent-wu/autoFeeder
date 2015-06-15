@@ -1,9 +1,8 @@
 #include "LCD.h"
 
-LiquidCrystal _lcd;
+LiquidCrystal _lcd(12, 11, 5, 4, 3, 2);
 
-LCD::LCD(uint8_t rs, uint8_t enable, uint8_t d4, uint8_t d5, uint8_t d6, uint8_t d7){
-	_lcd = LiquidCrystal(rs, enable, d4, d5, d6, d7);	
+LCD::LCD(){
 }
 
 void LCD::begin(int column, int line){

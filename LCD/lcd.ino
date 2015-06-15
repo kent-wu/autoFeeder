@@ -41,7 +41,7 @@
 #include <LCD.h>
 
 // initialize the library with the numbers of the interface pins
-LCD lcd(12, 11, 5, 4, 3, 2);
+LCD lcd;
 
 void setup() {
   // set up the LCD's number of columns and rows:
