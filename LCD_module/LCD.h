@@ -13,10 +13,10 @@ class LCD
 {
   public:
     LCD();
-    void begin(int columns, int line);
-    void print(char* str);
-    void print(unsigned int number);
-    void setCursor(int column, int line);
+    void firstLinePrint(char* str);
+    void firstLinePrint(unsigned int number);
+    void secondLinePrint(char* str);
+    void secondLinePrint(unsigned int number);
 };
 
 #endif
