@@ -41,23 +41,53 @@
 #include <LCD.h>
 #include <Wire.h>
 #include <Rtc_Pcf8563.h>
+#include <Servo.h> 
+#include <Time.h>
+
 
 // initialize the library with the numbers of the interface pins
 LCD lcd;
 Rtc_Pcf8563 clock;
+Servo myservo;
 
 void setup() {
+  Serial.begin(9600);
+
   //day, weekday, month, century(1=1900, 0=2000), year(0-99)
   clock.setDate(16, 2, 6, 0, 15);
   //hr, min, sec
-  clock.setTime(2, 25, 45);
+  clock.setTime(2, 59, 45);
   // Print a message to the LCD.
-  lcd.firstLinePrint(clock.formatDate());
+  lcd.firstLinePrint("Hello, world!");
+  // attaches the servo on pin 9 to the servo object
+  myservo.attach(9); 
 }
 
 void loop() {
   // print the number of seconds since reset:
   lcd.secondLinePrint(clock.formatTime());
+//  Serial.println(clock.formatTime());
+  Serial.println(second()%10);
+  String time(clock.formatTime());
+
+  if(time == "03:00:00"){
+    sweep();
+  }
+
+  if(second()%10 == 0){
+    sweep();
+  }
+
   delay(1000); 
 }
 
+void sweep(){
+  // goes from 0 degrees to 180 degrees
+  for(int pos = 0; pos <= 360; pos += 1)
+  {
+    // tell servo to go to position in variable 'pos'
+    myservo.write(pos);
+    // waits 15ms for the servo to reach the position
+    delay(15);
+  }
+}
