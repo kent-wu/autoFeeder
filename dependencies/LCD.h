@@ -7,15 +7,17 @@
 #define LCD_h
 
 #include "Arduino.h"
-#include "LiquidCrystal.h"
+#include <LiquidCrystal.h>
 
 class LCD
 {
   public:
     LCD();
     void firstLinePrint(char* str);
+    void firstLinePrint(String str);
     void firstLinePrint(unsigned int number);
     void secondLinePrint(char* str);
+    void secondLinePrint(String str);
     void secondLinePrint(unsigned int number);
 };
 

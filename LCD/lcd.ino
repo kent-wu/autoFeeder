@@ -39,17 +39,25 @@
 
 // include the library code:
 #include <LCD.h>
+#include <Wire.h>
+#include <Rtc_Pcf8563.h>
 
 // initialize the library with the numbers of the interface pins
 LCD lcd;
+Rtc_Pcf8563 clock;
 
 void setup() {
+  //day, weekday, month, century(1=1900, 0=2000), year(0-99)
+  clock.setDate(16, 2, 6, 0, 15);
+  //hr, min, sec
+  clock.setTime(2, 25, 45);
   // Print a message to the LCD.
-  lcd.firstLinePrint("hello, world!");
+  lcd.firstLinePrint(clock.formatDate());
 }
 
 void loop() {
   // print the number of seconds since reset:
-  lcd.secondLinePrint(millis() / 1000);
+  lcd.secondLinePrint(clock.formatTime());
+  delay(1000); 
 }
 
